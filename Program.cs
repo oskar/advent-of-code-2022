@@ -14,7 +14,7 @@ internal class Program
     {
         if (args.Length > 0)
         {
-            RunDay(args[0]);
+            RunDay(args);
         }
         else
         {
@@ -23,13 +23,14 @@ internal class Program
                 Console.WriteLine(dayType.Name);
             }
 
-            Console.Write("Select day: ");
-            RunDay(Console.ReadLine());
+            Console.Write("Day: ");
+            RunDay(Console.ReadLine().Split(" "));
         }
 
-        static string[] GetInput(int dayNumber)
+        static string[] GetInput(int dayNumber, bool useExample)
         {
-            var fileName = $"Day{dayNumber}.input";
+            var suffix = useExample ? "example" : "input";
+            var fileName = $"Day{dayNumber}.{suffix}";
             return File.Exists(fileName) ? File.ReadAllLines(fileName) : Array.Empty<string>();
         }
 
@@ -39,9 +40,9 @@ internal class Program
             return dayType != null ? (IDay?)Activator.CreateInstance(dayType) : null;
         }
 
-        static void RunDay(string? input)
+        static void RunDay(string[] args)
         {
-            if (int.TryParse(input, out var dayNumber))
+            if (int.TryParse(args[0], out var dayNumber))
             {
                 var day = GetDay(dayNumber);
                 if (day == null)
@@ -50,7 +51,7 @@ internal class Program
                     return;
                 }
 
-                var dayInput = GetInput(dayNumber);
+                var dayInput = GetInput(dayNumber, args.Length > 1 && args[1] == "example");
                 Console.WriteLine($"Day {dayNumber} part 1: {day.PartOne(dayInput)}");
                 Console.WriteLine($"Day {dayNumber} part 2: {day.PartTwo(dayInput)}");
             }
