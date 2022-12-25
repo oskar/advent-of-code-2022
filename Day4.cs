@@ -7,16 +7,16 @@ public class Day4 : IDay
 {
     private static readonly Regex Pattern = new Regex("(\\d+)-(\\d+),(\\d+)-(\\d+)");
 
-    public long PartOne(string[] input)
+    public string PartOne(string[] input)
     {
         return input.Select(Parse).Count(l =>
             (l.FirstLower <= l.SecondLower && l.FirstUpper >= l.SecondUpper) ||
-            (l.FirstLower >= l.SecondLower && l.FirstUpper <= l.SecondUpper));
+            (l.FirstLower >= l.SecondLower && l.FirstUpper <= l.SecondUpper)).ToString();
     }
 
-    public long PartTwo(string[] input)
+    public string PartTwo(string[] input)
     {
-        return input.Select(Parse).Count(l => l.FirstUpper >= l.SecondLower && l.SecondUpper >= l.FirstLower);
+        return input.Select(Parse).Count(l => l.FirstUpper >= l.SecondLower && l.SecondUpper >= l.FirstLower).ToString();
     }
 
     private static (int FirstLower, int FirstUpper, int SecondLower, int SecondUpper) Parse(string line)

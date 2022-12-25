@@ -5,9 +5,9 @@ namespace advent_of_code_2022;
 
 public class Day3 : IDay
 {
-    public long PartOne(string[] input)
+    public string PartOne(string[] input)
     {
-        return input.Select(FindDuplicatedItem).Select(GetPriority).Sum();
+        return input.Select(FindDuplicatedItem).Select(GetPriority).Sum().ToString();
     }
 
     private static char FindDuplicatedItem(string rucksack)
@@ -18,7 +18,7 @@ public class Day3 : IDay
         return secondCompartment.First(item => itemsInFirst.Contains(item));
     }
 
-    public long PartTwo(string[] input)
+    public string PartTwo(string[] input)
     {
         var badges = new List<char>();
         for (var i = 0; i < input.Length; i += 3)
@@ -26,7 +26,7 @@ public class Day3 : IDay
             badges.Add(input[i].Intersect(input[i + 1]).Intersect(input[i + 2]).Single());
         }
 
-        return badges.Select(GetPriority).Sum();
+        return badges.Select(GetPriority).Sum().ToString();
     }
 
     private static int GetPriority(char c) => c >= 'a' ? c - 96 : c - 38;

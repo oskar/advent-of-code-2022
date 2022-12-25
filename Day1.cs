@@ -6,14 +6,14 @@ namespace advent_of_code_2022;
 
 public class Day1 : IDay
 {
-    public long PartOne(string[] input)
+    public string PartOne(string[] input)
     {
-        return GetElves(input).Max();
+        return GetElves(input).Max().ToString();
     }
 
-    public long PartTwo(string[] input)
+    public string PartTwo(string[] input)
     {
-        return GetElves(input).OrderByDescending(e => e).Take(3).Sum();
+        return GetElves(input).OrderByDescending(e => e).Take(3).Sum().ToString();
     }
 
     private static List<int> GetElves(string[] input)

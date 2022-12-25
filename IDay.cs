@@ -2,6 +2,6 @@
 
 public interface IDay
 {
-    long PartOne(string[] input);
-    long PartTwo(string[] input);
+    string PartOne(string[] input);
+    string PartTwo(string[] input);
 }

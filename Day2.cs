@@ -5,7 +5,7 @@ namespace advent_of_code_2022;
 
 public class Day2 : IDay
 {
-    public long PartOne(string[] input) => input.Select(RoundScorePartOne).Sum();
+    public string PartOne(string[] input) => input.Select(RoundScorePartOne).Sum().ToString();
 
     private static int RoundScorePartOne(string round) => round switch
     {
@@ -23,7 +23,7 @@ public class Day2 : IDay
         _ => throw new Exception()
     };
 
-    public long PartTwo(string[] input) => input.Select(RoundScorePartTwo).Sum();
+    public string PartTwo(string[] input) => input.Select(RoundScorePartTwo).Sum().ToString();
 
     private static int RoundScorePartTwo(string round) => round switch
     {
